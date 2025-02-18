@@ -2,7 +2,7 @@ import { Type } from "class-transformer";
 import { ArrayNotEmpty, IsArray, IsIn, IsInt, IsNotEmpty, IsObject, IsOptional, IsPositive, IsString, ValidateNested } from "class-validator";
 import { ProcessEnum, SourceEnum } from "../enum";
 
-export class ReplicationDto {
+export class DataReplicationDto {
     @IsArray()
     @ArrayNotEmpty()
     @ValidateNested({ each: true })
