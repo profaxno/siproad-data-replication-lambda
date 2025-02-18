@@ -2,7 +2,7 @@ import { ProcessSummaryDto } from 'profaxnojs/util';
 
 import { Injectable, Logger } from '@nestjs/common';
 
-import { MessageDto } from './dto/replication.dto';
+import { MessageDto } from './dto/data-replication.dto';
 import { ProcessEnum, SourceEnum } from './enum';
 import { Record, Event, Body } from './interface';
 
