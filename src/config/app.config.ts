@@ -4,7 +4,10 @@ export const config = () => ({
     httpMaxRedirects: +process.env.HTTP_MAX_REDIRECTS || 3,
     executionRetries: +process.env.EXECUTION_RETRIES || 2,
     executionBaseDelay: +process.env.EXECUTION_BASE_DELAY || 1000,
-    
-    siproadHost: process.env.SIPROAD_HOST,
-    siproadApiKey: process.env.SIPROAD_API_KEY
+
+    siproadProductsHost: process.env.SIPROAD_PRODUCTS_HOST,
+    siproadProductsApiKey: process.env.SIPROAD_PRODUCTS_API_KEY,
+
+    siproadOrdersHost: process.env.SIPROAD_ORDERS_HOST,
+    siproadOrdersApiKey: process.env.SIPROAD_ORDERS_API_KEY
   })

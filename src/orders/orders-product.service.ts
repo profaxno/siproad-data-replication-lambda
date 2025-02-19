@@ -11,15 +11,15 @@ import { OrdersEnum } from './enum/orders.enum';
 export class OrdersProductService {
   private readonly logger = new Logger(OrdersProductService.name);
 
-  private siproadHost: string = null;
-  private siproadApiKey: string = null;
+  private siproadOrdersHost: string = null;
+  private siproadOrdersApiKey: string = null;
 
   constructor(
     private readonly configService: ConfigService,
     private readonly pfxHttpService: PfxHttpService
   ) { 
-    this.siproadHost = this.configService.get('siproadHost');
-    this.siproadApiKey = this.configService.get('siproadApiKey');
+    this.siproadOrdersHost = this.configService.get('siproadOrdersHost');
+    this.siproadOrdersApiKey = this.configService.get('siproadOrdersApiKey');
   }
 
   updateProduct(dto: OrdersProductDto): Promise<OrdersResponseDto>{
@@ -27,8 +27,8 @@ export class OrdersProductService {
 
     // * generate request values
     const method  = PfxHttpMethodEnum.PATCH;
-    const path    = this.siproadHost.concat(OrdersEnum.PATH_PRODUCTS_UPDATE);
-    const headers = { "x-api-key": this.siproadApiKey };
+    const path    = this.siproadOrdersHost.concat(OrdersEnum.PATH_PRODUCTS_UPDATE);
+    const headers = { "x-api-key": this.siproadOrdersApiKey };
     const body    = dto;
 
     // * send request
@@ -56,8 +56,8 @@ export class OrdersProductService {
 
     // * generate request values
     const method  = PfxHttpMethodEnum.DELETE;
-    const path    = this.siproadHost.concat(OrdersEnum.PATH_PRODUCTS_DELETE).concat(`/${id}`);;
-    const headers = { "x-api-key": this.siproadApiKey };
+    const path    = this.siproadOrdersHost.concat(OrdersEnum.PATH_PRODUCTS_DELETE).concat(`/${id}`);;
+    const headers = { "x-api-key": this.siproadOrdersApiKey };
     const body    = {};
 
     // * send request

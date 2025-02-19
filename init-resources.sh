@@ -4,14 +4,12 @@ echo "creating SNS..."
 # create sns topic
 aws --endpoint-url=http://localhost:4566 sns create-topic --name siproad-admin-sns
 aws --endpoint-url=http://localhost:4566 sns create-topic --name siproad-products-sns
-echo "SNS created OK in LocalStack"
 
 # create sqs queue
 echo "creating SQS..."
 aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name siproad-admin-products-sqs
 aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name siproad-admin-orders-sqs
 aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name siproad-products-orders-sqs
-echo "SQS created OK in LocalStack"
 
 # subscribe sqs to sns
 
@@ -50,7 +48,6 @@ aws --endpoint-url=http://localhost:4566 sns subscribe \
 --topic-arn arn:aws:sns:us-east-1:000000000000:siproad-products-sns \
 --protocol sqs \
 --notification-endpoint arn:aws:sqs:us-east-1:000000000000:siproad-products-orders-sqs
-echo "subscriptions SQS to SNS created OK in LocalStack"
 
 echo "creating lambda..."
 LAMBDA_NAME="siproad-data-replication-lambda"
@@ -94,6 +91,5 @@ aws --endpoint-url=http://localhost:4566 lambda create-event-source-mapping \
   --event-source arn:aws:sqs:us-east-1:000000000000:siproad-products-orders-sqs \
   --batch-size 10 \
   --function-response-types ReportBatchItemFailures
-echo "subscriptions lambda to SQS created OK in LocalStack"
 
 echo "<<< script executed"

@@ -11,15 +11,15 @@ import { ProductsEnum } from './enum/products.enum';
 export class ProductsCompanyService {
   private readonly logger = new Logger(ProductsCompanyService.name);
 
-  private siproadHost: string = null;
-  private siproadApiKey: string = null;
+  private siproadProductsHost: string = null;
+  private siproadProductsApiKey: string = null;
 
   constructor(
     private readonly configService: ConfigService,
     private readonly pfxHttpService: PfxHttpService
   ) { 
-    this.siproadHost = this.configService.get('siproadHost');
-    this.siproadApiKey = this.configService.get('siproadApiKey');
+    this.siproadProductsHost = this.configService.get('siproadProductsHost');
+    this.siproadProductsApiKey = this.configService.get('siproadProductsApiKey');
   }
 
   updateCompany(dto: ProductsCompanyDto): Promise<ProductsResponseDto>{
@@ -27,8 +27,8 @@ export class ProductsCompanyService {
 
     // * generate request values
     const method  = PfxHttpMethodEnum.PATCH;
-    const path    = this.siproadHost.concat(ProductsEnum.PATH_COMPANY_UPDATE);
-    const headers = { "x-api-key": this.siproadApiKey };
+    const path    = this.siproadProductsHost.concat(ProductsEnum.PATH_COMPANY_UPDATE);
+    const headers = { "x-api-key": this.siproadProductsApiKey };
     const body    = dto;
 
     // * send request
@@ -56,8 +56,8 @@ export class ProductsCompanyService {
 
     // * generate request values
     const method  = PfxHttpMethodEnum.DELETE;
-    const path    = this.siproadHost.concat(ProductsEnum.PATH_COMPANY_DELETE).concat(`/${id}`);;
-    const headers = { "x-api-key": this.siproadApiKey };
+    const path    = this.siproadProductsHost.concat(ProductsEnum.PATH_COMPANY_DELETE).concat(`/${id}`);;
+    const headers = { "x-api-key": this.siproadProductsApiKey };
     const body    = {};
 
     // * send request
